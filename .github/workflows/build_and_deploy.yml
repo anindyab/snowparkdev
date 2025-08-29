@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          repository: anindyab/snowparktest
+          repository: anindyab/snowparkdev
           #path: dev
           ref: dev
           
@@ -47,4 +47,6 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE_DEV }}
         run: 
+          echo $SNOWFLAKE_USER
+          echo SNOWFLAKE_PASSWORD
           python deploy_snowpark_app.py $GITHUB_WORKSPACE/first_snowpark_project
