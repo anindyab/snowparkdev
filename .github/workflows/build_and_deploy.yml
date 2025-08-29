@@ -1,0 +1,50 @@
+name: Deploy Snowpark Apps
+
+# Controls when the action will run. 
+on:
+  push:
+    branches:
+      - dev
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: anindyab/snowparkdev
+          #path: dev
+          ref: dev
+          
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Get certifi path
+        id: certifi
+        run: |
+          echo "CA_PATH=$(python -m certifi)" >> $GITHUB_OUTPUT
+
+      - name: Deploy Snowpark apps
+        working-directory: first_snowpark_project
+        env:
+          REQUESTS_CA_BUNDLE: ${{ steps.certifi.outputs.CA_PATH }}
+          SNOWFLAKE_OCSP_FAIL_OPEN: true
+          SNOWFLAKE_ACCOUNT: "swypewj-dev_account"
+          SNOWFLAKE_USER: "ANINDYADEVPROJ"
+          SNOWFLAKE_PASSWORD: "R8fj2YMt6ETPQas"
+          SNOWFLAKE_ROLE: "ACCOUNTADMIN"
+          SNOWFLAKE_WAREHOUSE: "COMPUTE_WH"
+          SNOWFLAKE_DATABASE: "DEMO_DB"
+        run: 
+          python deploy_snowpark_app.py $GITHUB_WORKSPACE/first_snowpark_project  

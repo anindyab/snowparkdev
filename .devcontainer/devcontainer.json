@@ -1,0 +1,20 @@
+{
+  "remoteUser": "root",
+  "name": "Codespaces-Project",
+  "customizations": {
+    "vscode": {
+      "settings": {}
+    }
+  },
+  "secrets": {
+    "SNOWFLAKE_ACCOUNT": {
+      "description": "Your Snowflake account identifier"
+    },
+    "SNOWFLAKE_USER": {
+      "description": "Your Snowflake username"
+    },
+    "SNOWFLAKE_PASSWORD": {
+      "description": "Your Snowflake password"
+    }
+  }
+}
