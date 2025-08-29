@@ -47,7 +47,4 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE_DEV }}
         run: 
-          echo "The secret1 is ${{ secrets.SNOWFLAKE_USER_DEV }}"
-          echo "The secret2 is ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}"
-          echo "The secret3 is ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}"
           python deploy_snowpark_app.py $GITHUB_WORKSPACE/first_snowpark_project
