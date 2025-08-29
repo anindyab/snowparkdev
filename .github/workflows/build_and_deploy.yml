@@ -47,4 +47,4 @@ jobs:
           SNOWFLAKE_WAREHOUSE: "COMPUTE_WH"
           SNOWFLAKE_DATABASE: "DEMO_DB"
         run: 
-          python deploy_snowpark_app.py $GITHUB_WORKSPACE/first_snowpark_project
+          python deploy_snowpark_app.py $GITHUB_WORKSPACE/first_snowpark_project  
